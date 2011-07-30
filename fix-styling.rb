@@ -39,7 +39,7 @@ def inject_scripts(fn)
   
   # Inject scripts into doc
   doc = open(fn){|f| Nokogiri(f) }
-  %w[ jquery-1.6.2.min.js fixup.js].each do |url|
+  %w[ jquery-1.6.2.min.js fixup.js ].each do |url|
     el = doc.create_element('script', {:type=>"text/javascript", :src=>"js/"+url})
     doc.css('head')[0].add_child(el)             # Reference our custom script instances in the html doc.
   end
