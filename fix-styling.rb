@@ -41,7 +41,7 @@ def inject_scripts(fn)
   doc = open(fn){|f| Nokogiri(f) }
   %w[ jquery-1.6.2.min.js fixup.js].each do |url|
     el = doc.create_element('script', {:type=>"text/javascript", :src=>"js/"+url})
-    doc.css('head')[0].add_child(el)             # Reference our custom script instance in the html doc.
+    doc.css('head')[0].add_child(el)             # Reference our custom script instances in the html doc.
   end
   doc.css('body')[0]['style'] = "display:none"   # Don't show the unformatted page initially, to avoid flicker.
   open(fn,'wb'){|f| f.write(doc.to_s) }
@@ -56,13 +56,13 @@ def script
  * <script type="text/javascript" src="jquery-1.6.2.min.js"></script>
  * <script type="text/javascript" src="fixup.js"></script>
  *
- * Performance indication of the script on a 852 page book:
- *  - Google Chrome 12 took was the fastest overall and needed 3.4s to load, process and display the page, 
- *      of which 1.5s was spent running this script and 1.9s for loading the HTML and rendering the page.
- *  - Firefox 5 was 18% slower than Chrome and needed 4s to load, process and display the page, 
- *      of which 1.2s was spent running this script and 2.8s loading the HTML and rendering the page.
- *  - IE 9 was 4.4 times slower than Chrome and needed 15s to load, process and display the page, 
- *      of which 3.4s was spent running this script and 11.6s loading the HTML and rendering the page.
+ * Performance indication of the script on a 448 page book:
+ *  - Google Chrome 12 took was the fastest overall and needed 3.8s to load, process and display the page, 
+ *      of which 2.3s was spent running this script and 1.5s for loading the HTML and rendering the page.
+ *  - Firefox 5 was 20% slower than Chrome and needed 4.5s to load, process and display the page, 
+ *      of which 2.5s was spent running this script and 2s loading the HTML and rendering the page.
+ *  - IE 9 was 6.8 times slower than Chrome and needed 25.5s to load, process and display the page, 
+ *      of which 9.5s was spent running this script and 16s loading the HTML and rendering the page.
  */
 (function(){
 
@@ -103,8 +103,8 @@ def script
     });
     $('.mbp_pagebreak',root).parents('.mbp_pagebreak')   // Flatten the nested page structure by making pages siblings.
     .last().parent().append(                             // This reverse-trick makes us start pulling pages depth first which minimizes the 
-      $('.mbp_pagebreak',root).reverse().remove()        // size of the sub-trees being operated on. It has an large impact on the IE-
-      .reverse()                                         // performance (2X+ faster), but no so much for other more "well-designed" browsers.
+      $('.mbp_pagebreak',root).reverse().remove()        // size of the sub-trees being operated on. It has a large impact on the IE-
+      .reverse()                                         // performance (2X+ faster), but not so much for other more "well-designed" browsers.
      );
 
     $(document.body).append(root);                       // Re-attached the container again
