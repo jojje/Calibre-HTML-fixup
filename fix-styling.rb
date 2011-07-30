@@ -101,6 +101,9 @@ def script
       var p = this.parentNode;
       $(this).replaceWith( this.childNodes );
     });
+    $('.mbp_pagebreak',root).parents('.mbp_pagebreak')   // Flatten the nested page structure by making pages siblings.
+    .last().parent().append( $('.mbp_pagebreak',root) );
+
     $(document.body).append(root);                       // Re-attached the container again
   
     $('font[size]').removeAttr('size');                  // Remove hard-coded size attributes
