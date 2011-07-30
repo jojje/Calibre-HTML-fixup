@@ -97,6 +97,10 @@ def script
     var root = $('#content').remove();                   // Detaching the tree to be manipulated speeds up the performance several orders on IE.
     $('tt code',root).contents().unwrap();               // Remove unecessary code elements around the text nodes in a tt-code segment
     $('td > p > font',root).unwrap();                    // Remove unecessary paragraph in table cells
+    $('a:not(a[href])',root).each(function(){            // Remove false links
+      var p = this.parentNode;
+      $(this).replaceWith( this.childNodes );
+    });
     $(document.body).append(root);                       // Re-attached the container again
   
     $('font[size]').removeAttr('size');                  // Remove hard-coded size attributes
