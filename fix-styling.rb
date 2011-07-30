@@ -92,15 +92,13 @@ def script
       '.code-block { margin-top: 1em; margin-left: 1em; }'+
       '.tip  { background-color: #E0FFE0; }'+
       '.note { background-color: #FFFFDD; }'+
-      '.warn { background-color: #FFDDDD; }'+
-      '.tip,.note,.warn {  }'
+      '.warn { background-color: #FFDDDD; }'
     );
     
     var root = $('#content').remove();                   // Detaching the tree to be manipulated speeds up the performance several orders on IE.
     $('tt code',root).contents().unwrap();               // Remove unecessary code elements around the text nodes in a tt-code segment
     $('td > p > font',root).unwrap();                    // Remove unecessary paragraph in table cells
     $('a:not(a[href])',root).each(function(){            // Remove false links
-      var p = this.parentNode;
       $(this).replaceWith( this.childNodes );
     });
     $('.mbp_pagebreak',root).parents('.mbp_pagebreak')   // Flatten the nested page structure by making pages siblings.
