@@ -105,8 +105,8 @@ def script
     });
     $('.mbp_pagebreak',root).parents('.mbp_pagebreak')   // Flatten the nested page structure by making pages siblings.
     .last().parent().append(                             // This reverse-trick makes us start pulling pages depth first which minimizes the 
-      $('.mbp_pagebreak',root).reverse().remove()        // size of the sub-trees being operated on. It has an enormous impact on the IE-
-      .reverse()                                         // performance (3-4x faster), but no so much for other more "well-designed" browsers.
+      $('.mbp_pagebreak',root).reverse().remove()        // size of the sub-trees being operated on. It has an large impact on the IE-
+      .reverse()                                         // performance (2X+ faster), but no so much for other more "well-designed" browsers.
      );
 
     $(document.body).append(root);                       // Re-attached the container again
