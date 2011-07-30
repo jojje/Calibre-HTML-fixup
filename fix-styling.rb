@@ -22,7 +22,7 @@ DEVNULL     = if RUBY_PLATFORM =~ /mingw/ then "NUL" else "/dev/null" end
 
 def main
   inf  = File.join INPUT_DIR, 'dummy.html'
-  outf = OUTPUT_DIR, 'book.html'
+  outf = File.join OUTPUT_DIR, 'book.html'
   cmd = 'tidy -i -wrap 120 -utf8 %s > %s 2>%s' % [inf,outf,DEVNULL]
   system(cmd)  # Tidy exits with non-zero for warnings as well
   inject_scripts(outf);
