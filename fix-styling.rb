@@ -77,9 +77,9 @@ def script
     }
     
     $('<style type="text/css"></style>').appendTo('head').html(
-      'tt {font-size: 1.1em !important; margin-top:1em;}'+
+      'tt {font-size: 1.2em !important; margin-top:1em;}'+
       'body {font-family: arial; font-size: 0.8em;}'+
-      'code {font-size: 1.1em;}'+
+      'code {font-size: 1.2em;}'+
       'table { border-collapse: collapse; }'+
       'th {text-align: left;}'+
       'th,td {padding: 0.2em;}'+
@@ -104,7 +104,7 @@ def script
     $('#content').prepend($('img:last').remove());      // Move book image to the top
     
     // Document specific fixups
-    $('table').get().slice(0,6).forEach(function(table){
+    $('table').get().slice(0,0).forEach(function(table){
       $(table).removeAttr('border');
     }); 
   } // fixLayout
