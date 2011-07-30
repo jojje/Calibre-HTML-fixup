@@ -6,8 +6,10 @@
 # - Nokogiri (gem install nokogiri)
 # - a locally available copy of jQuery (http://code.jquery.com/jquery-1.6.2.min.js)
 #   Or the script could be changed to reference the provided URL instead.
+# - HTML Tidy (http://tidy.sourceforge.net)
 #
 # Copyright (c) 2011 Jonas Tingeborn
+#
 # Provided under the MIT license (http://www.opensource.org/licenses/mit-license.php)
 #
 
