@@ -84,6 +84,9 @@ def script
       'th {text-align: left;}'+
       'th,td {padding: 0.2em;}'+
       'hr {display:none;}'+
+      'a { text-decoration:none; }'+
+      'a:hover { text-decoration:underline; }'+
+      '.toc a, .index a {color:#000077; }'+
       '.code-block { margin-top: 1em; margin-left: 1em; }'+
       '.tip  { background-color: #E0FFE0; }'+
       '.note { background-color: #FFFFDD; }'+
@@ -96,12 +99,18 @@ def script
     $('td > p > font',root).unwrap();                    // Remove unecessary paragraph in table cells
     $(document.body).append(root);                       // Re-attached the container again
   
-    $('font[size]').removeAttr('size');                 // Remove hard-coded size attributes
-    $('tt').closest('div').addClass('code-block');
+    $('font[size]').removeAttr('size');                  // Remove hard-coded size attributes
+    $('tt').closest('div').addClass('code-block');       // Change style of code blocks
+    $('div[class^=calibre]:contains(Table of Contents)') // Change style of TOC
+    .addClass('toc');
+    $('h1:contains(Index)').last()                       // Change style of Index
+    .closest('div[id^=filepos]')
+    .addClass('index');
+
     colorDiv('tip', 'Tip');
     colorDiv('note', 'Note');
     colorDiv('warn', 'Warning', 'Caution');
-    $('#content').prepend($('img:last').remove());      // Move book image to the top
+    $('#content').prepend($('img:last').remove());       // Move book image to the top
     
     // Document specific fixups
     $('table').get().slice(0,0).forEach(function(table){
